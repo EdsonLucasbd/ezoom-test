@@ -50,6 +50,7 @@ export const theme = {
         DEFAULT: "hsl(var(--card))",
         foreground: "hsl(var(--card-foreground))",
       },
+      'verde-oficial': '#42B073'
     },
     borderRadius: {
       lg: "var(--radius)",
