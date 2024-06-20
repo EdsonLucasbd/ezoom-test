@@ -8,8 +8,24 @@ type NavMenuProps = Partial<Menu>
 
 export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
   const [searchIcon, setSearchIcon] = useState("")
-
   const [deviceWidth, setDeviceWidth] = useState(0)
+  const [isReached, setIsReached] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentPosition = window.scrollY || document.documentElement.scrollTop;
+      if (currentPosition >= 200) {
+        setIsReached(true);
+      } else {
+        setIsReached(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     setDeviceWidth(window.innerWidth)
@@ -26,7 +42,7 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
   }, [deviceWidth, socialLink])
 
   return (
-    <nav className='fixed flex w-full h-fit items-center px-12 pb-5 pt-[70px] justify-between top-0 left-0 right-0 z-50 bg-transparent'>
+    <nav className={`fixed flex w-full h-fit items-center px-12 pb-5 pt-[70px] justify-between top-0 left-0 right-0 z-50 ${isReached ? 'bg-black bg-opacity-50 backdrop-blur shadow-md rounded-b-lg' : 'bg-transparent'}`}>
       <img src={logo?.url} aria-hidden alt="" className="w-[100px] h-[16.73px]" />
 
       <div className="flex items-center justify-center">
