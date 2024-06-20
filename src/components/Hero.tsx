@@ -8,7 +8,7 @@ export const HeroComponent = ({ title, subTitle, bgImage }: HeroComponentProps) 
 
   return (
     <div className={`
-      relative flex flex-col items-center justify-center px-12 h-full w-full text-white`}
+      relative flex flex-col flex-1 items-center justify-center px-12 h-screen w-full text-white`}
     >
       <div
         className="absolute -z-10 top-0 left-0 w-full h-full video-overlay"
@@ -25,7 +25,7 @@ export const HeroComponent = ({ title, subTitle, bgImage }: HeroComponentProps) 
         <ReactMarkdown
           components={{ p: 'h1' }}
           className='text-[3.65938rem] font-thin hero-title leading-[3.0625rem]
-            max-w-[333px]'
+            max-w-[333px] pt-[100px]'
         >
           {title}
         </ReactMarkdown>
