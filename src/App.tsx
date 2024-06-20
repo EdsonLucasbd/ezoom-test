@@ -4,6 +4,7 @@ import { HeroComponent } from './components/Hero'
 import { NavMenu } from './components/Menu'
 import { WhatsappButton } from './components/WhatsappButton'
 import { Query } from './gql/generate/graphql'
+import { Banners } from './components/Banners'
 
 function App() {
   const { loading, error, data } = useQuery<Query>(GET_DATA)
@@ -12,7 +13,7 @@ function App() {
   if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <div className="flex w-full h-screen font-barlow">
+    <div className="w-full h-full font-barlow">
       {data && (
         <>
           <NavMenu logo={data.menu?.logo} menuLink={data.menu?.menuLink} socialLink={data.menu?.socialLink} />
@@ -22,6 +23,7 @@ function App() {
             subTitle={data.hero?.subTitle}
           />
           <WhatsappButton icon={data.hero?.whatsapp} />
+          <Banners data={data.carousel?.component} />
         </>
       )}
     </div>

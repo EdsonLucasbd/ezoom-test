@@ -43,6 +43,7 @@ export const GET_DATA = gql`
         }
         title
         date
+        color
       }
     }
   }
