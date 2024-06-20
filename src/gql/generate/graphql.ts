@@ -38,7 +38,6 @@ export type Aggregate = {
 export type Asset = Entity & Node & {
   __typename?: 'Asset';
   bgImageHero: Array<Hero>;
-  bgImageMobileHero: Array<Hero>;
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
@@ -86,20 +85,6 @@ export type Asset = Entity & Node & {
 
 /** Asset system model */
 export type AssetBgImageHeroArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<HeroOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<HeroWhereInput>;
-};
-
-
-/** Asset system model */
-export type AssetBgImageMobileHeroArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -225,7 +210,6 @@ export type AssetConnection = {
 
 export type AssetCreateInput = {
   bgImageHero?: InputMaybe<HeroCreateManyInlineInput>;
-  bgImageMobileHero?: InputMaybe<HeroCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconSocial?: InputMaybe<SocialCreateManyInlineInput>;
@@ -293,9 +277,6 @@ export type AssetManyWhereInput = {
   bgImageHero_every?: InputMaybe<HeroWhereInput>;
   bgImageHero_none?: InputMaybe<HeroWhereInput>;
   bgImageHero_some?: InputMaybe<HeroWhereInput>;
-  bgImageMobileHero_every?: InputMaybe<HeroWhereInput>;
-  bgImageMobileHero_none?: InputMaybe<HeroWhereInput>;
-  bgImageMobileHero_some?: InputMaybe<HeroWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -419,7 +400,6 @@ export type AssetTransformationInput = {
 
 export type AssetUpdateInput = {
   bgImageHero?: InputMaybe<HeroUpdateManyInlineInput>;
-  bgImageMobileHero?: InputMaybe<HeroUpdateManyInlineInput>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconSocial?: InputMaybe<SocialUpdateManyInlineInput>;
   imageCarouselComponent?: InputMaybe<CarouselItemDataUpdateManyInlineInput>;
@@ -658,9 +638,6 @@ export type AssetWhereInput = {
   bgImageHero_every?: InputMaybe<HeroWhereInput>;
   bgImageHero_none?: InputMaybe<HeroWhereInput>;
   bgImageHero_some?: InputMaybe<HeroWhereInput>;
-  bgImageMobileHero_every?: InputMaybe<HeroWhereInput>;
-  bgImageMobileHero_none?: InputMaybe<HeroWhereInput>;
-  bgImageMobileHero_some?: InputMaybe<HeroWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1855,7 +1832,6 @@ export type EntityWhereInput = {
 export type Hero = Entity & Node & {
   __typename?: 'Hero';
   bgImage?: Maybe<Asset>;
-  bgImageMobile?: Maybe<Asset>;
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
@@ -1884,13 +1860,6 @@ export type Hero = Entity & Node & {
 
 
 export type HeroBgImageArgs = {
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  where?: InputMaybe<AssetSingleRelationWhereInput>;
-};
-
-
-export type HeroBgImageMobileArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
   where?: InputMaybe<AssetSingleRelationWhereInput>;
@@ -1965,7 +1934,6 @@ export type HeroConnection = {
 
 export type HeroCreateInput = {
   bgImage?: InputMaybe<AssetCreateOneInlineInput>;
-  bgImageMobile?: InputMaybe<AssetCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   subTitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -2007,7 +1975,6 @@ export type HeroManyWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
   bgImage?: InputMaybe<AssetWhereInput>;
-  bgImageMobile?: InputMaybe<AssetWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2139,7 +2106,6 @@ export enum HeroOrderByInput {
 
 export type HeroUpdateInput = {
   bgImage?: InputMaybe<AssetUpdateOneInlineInput>;
-  bgImageMobile?: InputMaybe<AssetUpdateOneInlineInput>;
   subTitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   whatsapp?: InputMaybe<SocialUpdateOneInlineInput>;
@@ -2227,7 +2193,6 @@ export type HeroWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
   bgImage?: InputMaybe<AssetWhereInput>;
-  bgImageMobile?: InputMaybe<AssetWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -7139,7 +7104,7 @@ export enum _SystemDateTimeFieldVariation {
 export type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MyQueryQuery = { __typename?: 'Query', menu?: { __typename?: 'Menu', logo?: { __typename?: 'Asset', url: string } | null, menuLink: Array<{ __typename?: 'Link', id: string, title?: string | null }>, socialLink: Array<{ __typename?: 'Social', id: string, name?: string | null, icon?: { __typename?: 'Asset', url: string } | null }> } | null, hero?: { __typename?: 'Hero', title?: string | null, subTitle?: string | null, bgImage?: { __typename?: 'Asset', url: string } | null, whatsapp?: { __typename?: 'Social', icon?: { __typename?: 'Asset', url: string } | null } | null, bgImageMobile?: { __typename?: 'Asset', url: string } | null } | null, carousel?: { __typename?: 'Carousel', component: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> } | null, sections: Array<{ __typename?: 'Section', title?: string | null, id: string, sectionSubTitle?: string | null, sectionItem: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> }> };
+export type MyQueryQuery = { __typename?: 'Query', menu?: { __typename?: 'Menu', logo?: { __typename?: 'Asset', url: string } | null, menuLink: Array<{ __typename?: 'Link', id: string, title?: string | null }>, socialLink: Array<{ __typename?: 'Social', id: string, name?: string | null, icon?: { __typename?: 'Asset', url: string } | null }> } | null, hero?: { __typename?: 'Hero', title?: string | null, subTitle?: string | null, bgImage?: { __typename?: 'Asset', url: string } | null, whatsapp?: { __typename?: 'Social', icon?: { __typename?: 'Asset', url: string } | null } | null } | null, carousel?: { __typename?: 'Carousel', component: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> } | null, sections: Array<{ __typename?: 'Section', title?: string | null, id: string, sectionSubTitle?: string | null, sectionItem: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> }> };
 
 
-export const MyQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"menu"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxma09b20b9207lwcjapufqx","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"menuLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"socialLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Social"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"hero"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9ontz0afe07ltr3n8sy1e","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"bgImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"whatsapp"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"bgImageMobile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"carousel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9wlnk0ase07lt4liwtkwz","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"sectionItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sectionSubTitle"}}]}}]}}]} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;
+export const MyQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"menu"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxma09b20b9207lwcjapufqx","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"menuLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"socialLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Social"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"hero"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9ontz0afe07ltr3n8sy1e","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"bgImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"whatsapp"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"carousel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9wlnk0ase07lt4liwtkwz","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"sectionItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sectionSubTitle"}}]}}]}}]} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;

@@ -78,3 +78,9 @@
 .hero-title strong {
   font-weight: 700
 }
+
+.video-overlay {
+  background: linear-gradient(111deg, rgba(0, 0, 0, 0.85) 20.66%, rgba(0, 0, 0, 0) 56.27%),
+linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+
+}

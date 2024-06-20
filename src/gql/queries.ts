@@ -33,9 +33,6 @@ export const GET_DATA = gql`
         url
       }
     }
-    bgImageMobile {
-      url
-    }
   }
   carousel(where: {id: "clxm9wlnk0ase07lt4liwtkwz"}) {
     component {

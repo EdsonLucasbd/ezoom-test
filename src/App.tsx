@@ -1,34 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Asset, Link, Maybe, MyQueryQuery, Social } from './gql/generate/graphql'
+import { GET_DATA } from './gql/queries'
+import { useQuery } from '@apollo/client'
+import { HeroComponent } from './components/Hero'
+import { NavMenu } from './components/Menu'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { loading, error, data } = useQuery<MyQueryQuery>(GET_DATA)
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex w-full h-screen font-barlow">
+      {data && (
+        <>
+          <NavMenu logo={data.menu?.logo as Maybe<Asset> | undefined} menuLink={data.menu?.menuLink as Link[] | undefined} socialLink={data.menu?.socialLink as Social[] | undefined} />
+          <HeroComponent
+            bgImage={data.hero?.bgImage as Maybe<Asset> | undefined}
+            title={data.hero?.title}
+            subTitle={data.hero?.subTitle}
+          />
+        </>
+      )}
+    </div>
   )
 }
 
