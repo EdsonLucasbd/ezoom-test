@@ -38,6 +38,7 @@ export type Aggregate = {
 export type Asset = Entity & Node & {
   __typename?: 'Asset';
   bgImageHero: Array<Hero>;
+  bgImageMobileHero: Array<Hero>;
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
@@ -58,7 +59,7 @@ export type Asset = Entity & Node & {
   locale: Locale;
   /** Get the other localizations for this document */
   localizations: Array<Asset>;
-  logoHero: Array<Hero>;
+  logoMenu: Array<Menu>;
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']['output']>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -85,6 +86,20 @@ export type Asset = Entity & Node & {
 
 /** Asset system model */
 export type AssetBgImageHeroArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<HeroOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<HeroWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetBgImageMobileHeroArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -134,16 +149,16 @@ export type AssetLocalizationsArgs = {
 
 
 /** Asset system model */
-export type AssetLogoHeroArgs = {
+export type AssetLogoMenuArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   last?: InputMaybe<Scalars['Int']['input']>;
   locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<HeroOrderByInput>;
+  orderBy?: InputMaybe<MenuOrderByInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<HeroWhereInput>;
+  where?: InputMaybe<MenuWhereInput>;
 };
 
 
@@ -210,13 +225,14 @@ export type AssetConnection = {
 
 export type AssetCreateInput = {
   bgImageHero?: InputMaybe<HeroCreateManyInlineInput>;
+  bgImageMobileHero?: InputMaybe<HeroCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconSocial?: InputMaybe<SocialCreateManyInlineInput>;
   imageCarouselComponent?: InputMaybe<CarouselItemDataCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
-  logoHero?: InputMaybe<HeroCreateManyInlineInput>;
+  logoMenu?: InputMaybe<MenuCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
   uploadUrl?: InputMaybe<Scalars['String']['input']>;
@@ -277,6 +293,9 @@ export type AssetManyWhereInput = {
   bgImageHero_every?: InputMaybe<HeroWhereInput>;
   bgImageHero_none?: InputMaybe<HeroWhereInput>;
   bgImageHero_some?: InputMaybe<HeroWhereInput>;
+  bgImageMobileHero_every?: InputMaybe<HeroWhereInput>;
+  bgImageMobileHero_none?: InputMaybe<HeroWhereInput>;
+  bgImageMobileHero_some?: InputMaybe<HeroWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -315,9 +334,9 @@ export type AssetManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  logoHero_every?: InputMaybe<HeroWhereInput>;
-  logoHero_none?: InputMaybe<HeroWhereInput>;
-  logoHero_some?: InputMaybe<HeroWhereInput>;
+  logoMenu_every?: InputMaybe<MenuWhereInput>;
+  logoMenu_none?: InputMaybe<MenuWhereInput>;
+  logoMenu_some?: InputMaybe<MenuWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -400,12 +419,13 @@ export type AssetTransformationInput = {
 
 export type AssetUpdateInput = {
   bgImageHero?: InputMaybe<HeroUpdateManyInlineInput>;
+  bgImageMobileHero?: InputMaybe<HeroUpdateManyInlineInput>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconSocial?: InputMaybe<SocialUpdateManyInlineInput>;
   imageCarouselComponent?: InputMaybe<CarouselItemDataUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
-  logoHero?: InputMaybe<HeroUpdateManyInlineInput>;
+  logoMenu?: InputMaybe<MenuUpdateManyInlineInput>;
   /** Use this to define if its a reupload for the asset */
   reUpload?: InputMaybe<Scalars['Boolean']['input']>;
   /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
@@ -638,6 +658,9 @@ export type AssetWhereInput = {
   bgImageHero_every?: InputMaybe<HeroWhereInput>;
   bgImageHero_none?: InputMaybe<HeroWhereInput>;
   bgImageHero_some?: InputMaybe<HeroWhereInput>;
+  bgImageMobileHero_every?: InputMaybe<HeroWhereInput>;
+  bgImageMobileHero_none?: InputMaybe<HeroWhereInput>;
+  bgImageMobileHero_some?: InputMaybe<HeroWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -729,9 +752,9 @@ export type AssetWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  logoHero_every?: InputMaybe<HeroWhereInput>;
-  logoHero_none?: InputMaybe<HeroWhereInput>;
-  logoHero_some?: InputMaybe<HeroWhereInput>;
+  logoMenu_every?: InputMaybe<MenuWhereInput>;
+  logoMenu_none?: InputMaybe<MenuWhereInput>;
+  logoMenu_some?: InputMaybe<MenuWhereInput>;
   mimeType?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   mimeType_contains?: InputMaybe<Scalars['String']['input']>;
@@ -1832,6 +1855,7 @@ export type EntityWhereInput = {
 export type Hero = Entity & Node & {
   __typename?: 'Hero';
   bgImage?: Maybe<Asset>;
+  bgImageMobile?: Maybe<Asset>;
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
@@ -1842,7 +1866,6 @@ export type Hero = Entity & Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
-  logo?: Maybe<Asset>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -1867,6 +1890,13 @@ export type HeroBgImageArgs = {
 };
 
 
+export type HeroBgImageMobileArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+
 export type HeroCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1884,13 +1914,6 @@ export type HeroHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type HeroLogoArgs = {
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 
@@ -1942,8 +1965,8 @@ export type HeroConnection = {
 
 export type HeroCreateInput = {
   bgImage?: InputMaybe<AssetCreateOneInlineInput>;
+  bgImageMobile?: InputMaybe<AssetCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  logo?: InputMaybe<AssetCreateOneInlineInput>;
   subTitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1984,6 +2007,7 @@ export type HeroManyWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
   bgImage?: InputMaybe<AssetWhereInput>;
+  bgImageMobile?: InputMaybe<AssetWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2022,7 +2046,6 @@ export type HeroManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  logo?: InputMaybe<AssetWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2116,7 +2139,7 @@ export enum HeroOrderByInput {
 
 export type HeroUpdateInput = {
   bgImage?: InputMaybe<AssetUpdateOneInlineInput>;
-  logo?: InputMaybe<AssetUpdateOneInlineInput>;
+  bgImageMobile?: InputMaybe<AssetUpdateOneInlineInput>;
   subTitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   whatsapp?: InputMaybe<SocialUpdateOneInlineInput>;
@@ -2204,6 +2227,7 @@ export type HeroWhereInput = {
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
   bgImage?: InputMaybe<AssetWhereInput>;
+  bgImageMobile?: InputMaybe<AssetWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2242,7 +2266,6 @@ export type HeroWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  logo?: InputMaybe<AssetWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2788,6 +2811,7 @@ export type Menu = Entity & Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  logo?: Maybe<Asset>;
   menuLink: Array<MenumenuLinkUnion>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -2821,6 +2845,13 @@ export type MenuHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type MenuLogoArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 
@@ -2888,6 +2919,7 @@ export type MenuConnection = {
 
 export type MenuCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  logo?: InputMaybe<AssetCreateOneInlineInput>;
   menuLink?: InputMaybe<MenumenuLinkUnionCreateManyInlineInput>;
   socialLink?: InputMaybe<MenusocialLinkUnionCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2964,6 +2996,7 @@ export type MenuManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  logo?: InputMaybe<AssetWhereInput>;
   /** All values in which the union is empty. */
   menuLink_empty?: InputMaybe<Scalars['Boolean']['input']>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
@@ -3021,6 +3054,7 @@ export enum MenuOrderByInput {
 }
 
 export type MenuUpdateInput = {
+  logo?: InputMaybe<AssetUpdateOneInlineInput>;
   menuLink?: InputMaybe<MenumenuLinkUnionUpdateManyInlineInput>;
   socialLink?: InputMaybe<MenusocialLinkUnionUpdateManyInlineInput>;
 };
@@ -3144,6 +3178,7 @@ export type MenuWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  logo?: InputMaybe<AssetWhereInput>;
   /** All values in which the union is empty. */
   menuLink_empty?: InputMaybe<Scalars['Boolean']['input']>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
@@ -7104,7 +7139,7 @@ export enum _SystemDateTimeFieldVariation {
 export type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MyQueryQuery = { __typename?: 'Query', menu?: { __typename?: 'Menu', menuLink: Array<{ __typename?: 'Link', id: string, title?: string | null }>, socialLink: Array<{ __typename?: 'Social', id: string, name?: string | null, icon?: { __typename?: 'Asset', url: string } | null }> } | null, hero?: { __typename?: 'Hero', title?: string | null, subTitle?: string | null, logo?: { __typename?: 'Asset', url: string } | null, bgImage?: { __typename?: 'Asset', url: string } | null, whatsapp?: { __typename?: 'Social', icon?: { __typename?: 'Asset', url: string } | null } | null } | null, carousel?: { __typename?: 'Carousel', component: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> } | null, sections: Array<{ __typename?: 'Section', title?: string | null, id: string, sectionSubTitle?: string | null, sectionItem: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> }> };
+export type MyQueryQuery = { __typename?: 'Query', menu?: { __typename?: 'Menu', logo?: { __typename?: 'Asset', url: string } | null, menuLink: Array<{ __typename?: 'Link', id: string, title?: string | null }>, socialLink: Array<{ __typename?: 'Social', id: string, name?: string | null, icon?: { __typename?: 'Asset', url: string } | null }> } | null, hero?: { __typename?: 'Hero', title?: string | null, subTitle?: string | null, bgImage?: { __typename?: 'Asset', url: string } | null, whatsapp?: { __typename?: 'Social', icon?: { __typename?: 'Asset', url: string } | null } | null, bgImageMobile?: { __typename?: 'Asset', url: string } | null } | null, carousel?: { __typename?: 'Carousel', component: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> } | null, sections: Array<{ __typename?: 'Section', title?: string | null, id: string, sectionSubTitle?: string | null, sectionItem: Array<{ __typename?: 'CarouselItemData', id: string, title?: string | null, date?: string | null, image?: { __typename?: 'Asset', url: string } | null }> }> };
 
 
-export const MyQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"menu"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxma09b20b9207lwcjapufqx","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"menuLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"socialLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Social"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"hero"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9ontz0afe07ltr3n8sy1e","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"bgImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"whatsapp"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"carousel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9wlnk0ase07lt4liwtkwz","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"sectionItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sectionSubTitle"}}]}}]}}]} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;
+export const MyQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"menu"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxma09b20b9207lwcjapufqx","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"menuLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"socialLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Social"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"hero"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9ontz0afe07ltr3n8sy1e","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"subTitle"}},{"kind":"Field","name":{"kind":"Name","value":"bgImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"whatsapp"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"bgImageMobile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"carousel"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"StringValue","value":"clxm9wlnk0ase07lt4liwtkwz","block":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sections"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"sectionItem"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselItemData"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"date"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"sectionSubTitle"}}]}}]}}]} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;

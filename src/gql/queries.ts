@@ -1,8 +1,11 @@
 import {gql} from '@apollo/client'
 
-export const gedData = gql`
+export const GET_DATA = gql`
   query MyQuery {
   menu(where: {id: "clxma09b20b9207lwcjapufqx"}) {
+    logo {
+      url
+    }
     menuLink {
       ... on Link {
         id
@@ -20,9 +23,6 @@ export const gedData = gql`
     }
   }
   hero(where: {id: "clxm9ontz0afe07ltr3n8sy1e"}) {
-    logo {
-      url
-    }
     title
     subTitle
     bgImage {
@@ -32,6 +32,9 @@ export const gedData = gql`
       icon {
         url
       }
+    }
+    bgImageMobile {
+      url
     }
   }
   carousel(where: {id: "clxm9wlnk0ase07lt4liwtkwz"}) {
