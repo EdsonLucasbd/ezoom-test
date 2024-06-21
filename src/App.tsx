@@ -5,12 +5,14 @@ import { NavMenu } from './components/Menu'
 import { WhatsappButton } from './components/WhatsappButton'
 import { Query } from './gql/generate/graphql'
 import { Banners } from './components/Banners'
+import { SectionCard } from './components/Section'
 
 function App() {
   const { loading, error, data } = useQuery<Query>(GET_DATA)
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
+
 
   return (
     <div className="w-full h-full font-barlow">
@@ -24,6 +26,11 @@ function App() {
           />
           <WhatsappButton icon={data.hero?.whatsapp} />
           <Banners data={data.carousel?.component} />
+          <div className="flex flex-col gap-4 mb-[65.80px]">
+            {data?.sections?.map((item) => (
+              <SectionCard key={item.id} sectionItem={item.sectionItem} title={item.title} />
+            ))}
+          </div>
         </>
       )}
     </div>

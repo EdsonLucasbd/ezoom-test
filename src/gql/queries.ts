@@ -58,6 +58,7 @@ export const GET_DATA = gql`
         image {
           url
         }
+        color
       }
     }
     sectionSubTitle
