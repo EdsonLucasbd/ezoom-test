@@ -260,6 +260,7 @@ const CarouselDots = React.forwardRef<
     () => setUpdateState((prevState) => !prevState),
     []
   );
+  console.log(updateState)
 
   React.useEffect(() => {
     if (api) {
