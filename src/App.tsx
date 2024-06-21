@@ -28,7 +28,7 @@ function App() {
           <Banners data={data.carousel?.component} />
           <div className="flex flex-col gap-4 mb-[65.80px] md:mt-10 md:items-center">
             {data?.sections?.map((item) => (
-              <SectionCard key={item.id} sectionItem={item.sectionItem} title={item.title} />
+              <SectionCard key={item.id} sectionItem={item.sectionItem} title={item.title} subtitle={item.sectionSubTitle} />
             ))}
           </div>
         </>

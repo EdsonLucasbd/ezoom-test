@@ -3,9 +3,9 @@ import { Button } from './ui/button'
 
 export const LinkButton = ({ children, className }: { children: string, className?: string }) => {
   return (
-    <Button variant="outline" className={cn(`rounded-full w-[124px] h-[49px] 
-      bg-transparent border-2 hover:bg-white hover:bg-opacity-10 
-      hover:text-white font-bold text-base`, className)}>
+    <Button variant="ghost" className={cn(`rounded-full w-[124px] h-[49px] 
+      bg-transparent border-2 hover:bg-[#333333]
+      hover:border-[#333333] hover:text-white font-bold text-base transition-all ease-in-out duration-200 delay-100`, className)}>
       {children}
     </Button>
   )

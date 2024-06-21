@@ -13,7 +13,7 @@ export const HeroComponent = ({ title, subTitle, bgImage }: HeroComponentProps) 
     `}
     >
       <div
-        className="absolute -z-10 top-0 left-0 w-full h-full video-overlay"
+        className="absolute md -z-10 top-0 left-0 w-full h-full video-overlay"
       />
       <video
         className="absolute -z-20 top-0 left-0 w-full h-full object-cover pointer-events-none"
