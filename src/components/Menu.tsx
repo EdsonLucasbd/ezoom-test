@@ -14,10 +14,19 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentPosition = window.scrollY || document.documentElement.scrollTop;
-      if (currentPosition >= 200) {
-        setIsReached(true);
-      } else {
-        setIsReached(false);
+
+      if (window.innerWidth < 768) {
+        if (currentPosition >= 200) {
+          setIsReached(true);
+        } else {
+          setIsReached(false);
+        }
+      } else if (window.innerWidth > 768) {
+        if (currentPosition >= 100) {
+          setIsReached(true);
+        } else {
+          setIsReached(false);
+        }
       }
     };
 
@@ -42,14 +51,25 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
   }, [deviceWidth, socialLink])
 
   return (
-    <nav className={`fixed flex w-full h-fit items-center px-12 pb-5 pt-[70px] justify-between top-0 left-0 right-0 z-50 ${isReached ? 'bg-black bg-opacity-50 backdrop-blur shadow-md rounded-b-lg' : 'bg-transparent'}`}>
+    <nav className={`fixed flex w-full h-fit items-center px-12 md:px-[121px] pb-5 pt-[70px] md:pt-[50px] justify-between top-0 left-0 right-0 z-50 ${isReached ? 'bg-black bg-opacity-50 backdrop-blur shadow-md rounded-b-lg' : 'bg-transparent'}`}>
       <img src={logo?.url} aria-hidden alt="" className="w-[100px] h-[16.73px]" />
 
-      <div className="flex items-center justify-center">
-        <Button variant="ghost" className="hover:bg-white hover:bg-opacity-10 
-      hover:text-white mr-[41px] w-fit p-1">
-          <img src={searchIcon} alt="" aria-hidden className="size-[26px]" />
-        </Button>
+      <div className="flex items-center">
+        <ul className="hidden md:flex mr-[104.07px] gap-[60px]">
+          {menuLink?.map((link) => (
+            <li key={link.id} className="text-white uppercase font-medium 
+            text-base rounded-sm hover:bg-white hover:bg-opacity-10 p-px cursor-pointer"
+            >
+              {link.title}
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center justify-center">
+          <Button variant="ghost" className="hover:bg-white hover:bg-opacity-10 
+      hover:text-white mr-[41px] md:mr-0 w-fit p-1">
+            <img src={searchIcon} alt="" aria-hidden className="size-[26px] md:size-5" />
+          </Button>
+        </div>
 
         <Popover>
           <PopoverTrigger className="md:hidden">
@@ -75,11 +95,15 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
             </ul>
           </PopoverContent>
         </Popover>
-        <ul className="flex">
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+        <div className="hidden md:flex">
+          <ul className="flex gap-5 md:gap-[21px] items-center justify-between ml-[43px]">
+            {socialLink?.filter((socialItem) => socialItem.name !== 'search' && socialItem.name !== 'search mobile').map((social) => (
+              <li key={social.id} className="rounded-sm cursor-pointer">
+                <img src={social.icon?.url} alt={`acessar nosso perfil no ${social.name}`} className="w-[19px]" />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </nav>
   )
