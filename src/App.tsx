@@ -8,9 +8,8 @@ import { Banners } from './components/Banners'
 import { SectionCard } from './components/Section'
 
 function App() {
-  const { loading, error, data } = useQuery<Query>(GET_DATA)
+  const { error, data } = useQuery<Query>(GET_DATA)
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
 
 
