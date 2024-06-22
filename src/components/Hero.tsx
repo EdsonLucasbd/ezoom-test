@@ -21,7 +21,9 @@ export const HeroComponent = ({ title, subTitle, bgImage }: HeroComponentProps) 
         autoPlay
         loop
         muted
-        playsInline />
+        playsInline
+        aria-hidden
+      />
 
       <div className="flex flex-col">
         <ReactMarkdown
