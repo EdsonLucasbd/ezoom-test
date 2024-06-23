@@ -77,6 +77,9 @@ export const theme = {
     screens: {
       'ultrawide': '2560px',
     },
+    spacing: {
+      'custom-width': 'calc(100% - 200px)',
+    },
   },
 };
 // eslint-disable-next-line no-undef

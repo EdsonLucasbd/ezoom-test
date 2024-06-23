@@ -9,7 +9,7 @@ export const HeroComponent = ({ title, subTitle, bgImage }: HeroComponentProps) 
   return (
     <div className={`
       relative flex flex-col flex-1 items-center md:items-start justify-center px-12 h-screen w-full text-white
-      md:px-[121px]
+      md:px-[121px] ultrawide:px-[200px]
     `}
     >
       <div
@@ -28,12 +28,15 @@ export const HeroComponent = ({ title, subTitle, bgImage }: HeroComponentProps) 
       <div className="flex flex-col">
         <ReactMarkdown
           components={{ p: 'h1' }}
-          className='text-[3.65938rem] md:text-[95.59px] font-thin hero-title 
-            leading-[3.0625rem] md:leading-[79.9px] max-w-[333px] md:max-w-[544px] pt-[100px]'
+          className='text-[3.65938rem] md:text-[95.59px] ultrawide:text-9xl font-thin hero-title 
+            leading-[3.0625rem] md:leading-[79.9px] max-w-[333px] md:max-w-[544px] ultrawide:max-w-[800px] pt-[100px]'
         >
           {title}
         </ReactMarkdown>
-        <p className='mt-5 mb-[33px] md:my-[50px] max-w-[200px] md:max-w-full font-normal text-lg md:text-2xl'>{subTitle}</p>
+        <p className='mt-5 ultrawide:mt-10 mb-[33px] md:my-[50px] max-w-[200px] md:max-w-full font-normal 
+          text-lg md:text-2xl ultrawide:text-[2.0313rem]'>
+          {subTitle}
+        </p>
 
         <LinkButton>SAIBA MAIS</LinkButton>
       </div>

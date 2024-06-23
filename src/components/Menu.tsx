@@ -51,14 +51,14 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
   }, [deviceWidth, socialLink])
 
   return (
-    <nav className={`fixed flex w-full h-fit items-center px-12 md:px-[121px] pb-5 pt-[70px] md:pt-[50px] justify-between top-0 left-0 right-0 z-50 ${isReached ? 'bg-black bg-opacity-50 backdrop-blur shadow-md rounded-b-lg' : 'bg-transparent'}`}>
+    <nav className={`fixed flex w-full h-fit items-center px-12 md:px-[121px] ultrawide:px-[200px] pb-5 pt-[70px] md:pt-[50px] justify-between top-0 left-0 right-0 z-50 ${isReached ? 'bg-black bg-opacity-50 backdrop-blur shadow-md rounded-b-lg' : 'bg-transparent'}`}>
       <img src={logo?.url} aria-hidden alt="" className="w-[100px] h-[16.73px]" />
 
       <div className="flex items-center">
         <ul className="hidden md:flex mr-[104.07px] gap-[60px]">
           {menuLink?.map((link) => (
             <li key={link.id} className="text-white uppercase font-medium 
-            text-base rounded-sm hover:bg-white hover:bg-opacity-10 p-px cursor-pointer"
+            text-base  ultrawide:text-2xl rounded-sm hover:bg-white hover:bg-opacity-10 p-px cursor-pointer"
             >
               {link.title}
             </li>
@@ -67,7 +67,7 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
         <div className="flex items-center justify-center">
           <Button variant="ghost" className="hover:bg-white hover:bg-opacity-10 
       hover:text-white mr-[41px] md:mr-0 w-fit p-1">
-            <img src={searchIcon} alt="" aria-hidden className="size-[26px] md:size-5" />
+            <img src={searchIcon} alt="" aria-hidden className="size-[26px] md:size-5 ultrawide:size-7" />
           </Button>
         </div>
 
@@ -96,10 +96,10 @@ export const NavMenu = ({ logo, menuLink, socialLink }: NavMenuProps) => {
           </PopoverContent>
         </Popover>
         <div className="hidden md:flex">
-          <ul className="flex gap-5 md:gap-[21px] items-center justify-between ml-[43px]">
+          <ul className="flex gap-5 md:gap-[21px] items-center justify-between ml-[43px] ">
             {socialLink?.filter((socialItem) => socialItem.name !== 'search' && socialItem.name !== 'search mobile').map((social) => (
               <li key={social.id} className="rounded-sm cursor-pointer">
-                <img src={social.icon?.url} alt={`acessar nosso perfil no ${social.name}`} className="w-[19px]" />
+                <img src={social.icon?.url} alt={`acessar nosso perfil no ${social.name}`} className="w-[19px] ultrawide:w-[26px]" />
               </li>
             ))}
           </ul>

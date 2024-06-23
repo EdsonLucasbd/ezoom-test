@@ -31,11 +31,12 @@ export const SectionCard = ({ sectionItem, title, subtitle }: SectionProps) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row md:items-center w-full md:w-custom-width h-[506px] rounded-[10px] border-l-[12px] md:px-10 pt-[38px] bg-[#F7F7F7]" style={{ borderLeftColor: sectionItem?.[0].color ?? '#FF632D' }}>
-      <div className="flex flex-col">
-        <h2 className="font-thin uppercase leading-10 md:leading-[120px] text-[40px] md:text-[80px] -tracking-[8%] text-center pb-[26px] md:pb-0">{title}</h2>
+    <div className="flex flex-col md:flex-row md:items-center w-full md:w-custom-width ultrawide:w-[88%] h-[506px] 
+      ultrawide:h-[600px] rounded-[10px] border-l-[12px] md:px-10 ultrawide:px-[73px] pt-[38px] bg-[#F7F7F7]" style={{ borderLeftColor: sectionItem?.[0].color ?? '#FF632D' }}>
+      <div className="flex flex-col md:w-2/5 ultrawide:w-1/5">
+        <h2 className="font-thin uppercase leading-10 md:leading-[120px] text-[40px] md:text-[80px] -tracking-[8%] text-center md:text-start pb-[26px] md:pb-0">{title}</h2>
         <p className="hidden md:flex font-normal text-lg mb-[23px]">{subtitle}</p>
-        <LinkButton className="hidden md:flex border-[#333333]">SAIBA MAIS</LinkButton>
+        <LinkButton className="hidden md:flex border-[#333333]">VER TODOS</LinkButton>
       </div>
       <Carousel className="ml-[53px] pr-[50px] w-[329px] h-[325px] md:hidden">
         <CarouselContent>
@@ -72,9 +73,9 @@ export const SectionCard = ({ sectionItem, title, subtitle }: SectionProps) => {
         <CarouselDots />
       </Carousel>
 
-      <div className="hidden md:flex gap-10 items-center justify-center ml-10">
+      <div className="hidden md:flex gap-10 items-center justify-center ml-10 ultrawide:ml-[146px]">
         {sectionItem?.map((item, index) => (
-          <div key={item.id} className="w-[220px] h-fit transition-all ease-in-out duration-300 rounded-[10px] group"
+          <div key={item.id} className="w-[220px] h-fit ultrawide:w-[660px] transition-all ease-in-out duration-300 rounded-[10px] group"
             onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={() => handleMouseLeave(index)}
             style={{
               backgroundColor: isHover.state && isHover.index === index
@@ -87,9 +88,12 @@ export const SectionCard = ({ sectionItem, title, subtitle }: SectionProps) => {
               <div className="absolute bottom-0 left-0 right-0 h-2 rounded-b-[10px] text-[#333333] group-hover:text-white" style={{ backgroundColor: sectionItem?.[0].color ?? '#000' }}></div>
             </div>
             <div className="flex flex-col w-full pt-[22px] h-fit text-[#333333] pb-8 group-hover:text-white">
-              <p className="font-bold text-base pl-3 leading-[1.375rem] mb-10">{item.title}</p>
-              <div className="flex items-center justify-between px-3">
-                <p className="font-normal text-sm">{item.date}</p>
+              <p className="font-bold text-base ultrawide:text-2xl ultrawide:max-w-[320px] 
+                pl-3 ultrawide:pl-12 leading-[1.375rem] mb-10">
+                {item.title}
+              </p>
+              <div className="flex items-center justify-between px-3 ultrawide:px-12">
+                <p className="font-normal text-sm ultrawide:text-base">{item.date}</p>
                 <img src={arrow(index)} aria-hidden alt='' />
               </div>
             </div>
