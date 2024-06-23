@@ -53,7 +53,7 @@ export const Banners = ({ data }: { data: CarouselItemData[] | undefined }) => {
                       <img
                         src={arrow(index)}
                         aria-hidden alt=''
-                        className='transition-all ease-out duration-300 delay-75 group-hover:-translate-x-[240px]'
+                        className='transition-all ease-out duration-300 delay-75 group-hover:-translate-x-[295px]'
                       />
                     </div>
                   </div>
