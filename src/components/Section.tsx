@@ -37,7 +37,7 @@ export const SectionCard = ({ sectionItem, title, subtitle }: SectionProps) => {
         <p className="hidden md:flex font-normal text-lg mb-[23px]">{subtitle}</p>
         <LinkButton className="hidden md:flex border-[#333333]">SAIBA MAIS</LinkButton>
       </div>
-      <Carousel className="pl-[51px] pr-[50px] w-[329px] h-[325px] md:hidden">
+      <Carousel className="ml-[53px] pr-[50px] w-[329px] h-[325px] md:hidden">
         <CarouselContent>
           {sectionItem?.map((item, index) => (
             <CarouselItem className="flex-wrap group" onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={() => handleMouseLeave(index)}
