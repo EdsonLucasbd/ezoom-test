@@ -68,29 +68,30 @@ export const Banners = ({ data }: { data: CarouselItemData[] | undefined }) => {
 
       <div className='md:flex w-full hidden'>
         {data && data.map((item, index) => (
-          <Card key={item.id} className='relative w-[384px] h-fit border-none rounded-b-[10px] group' onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={() => handleMouseLeave(index)}>
+          <Card key={item.id} className='relative w-[384px] ultrawide:w-full h-fit border-none rounded-b-[10px] group' onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={() => handleMouseLeave(index)}>
             <CardContent className='rounded-b-[11.2px] p-0'>
               <span className="rounded-b-[5px] h-[8.96px] w-full absolute z-20" style={{ backgroundColor: item.color ?? '#FF632D' }} />
               <div className="absolute size-full bg-[#000000b5] opacity-0 group-hover:opacity-100 rounded-[10px] transition-all ease-in-out duration-300 delay-75"></div>
               <img src={item.image?.url} alt={item.title!} className='w-full h-auto -z-10' />
             </CardContent>
             <CardFooter className='p-0'>
-              <div className="absolute flex flex-col w-full -left-2 pt-6 px-[39px] h-full text-white gap-y-10 z-40">
-                <p className='font-bold text-lg group-hover:text-[1.2188rem] leading-[22px] 
-                  group-hover:leading-[28px] max-w-[288.91px] group-hover:-translate-y-[80px]
-                  transition-all ease-in-out duration-300 delay-75 '>
+              <div className="absolute flex flex-col w-full -left-2 pt-6 ultrawide:pt-16 px-[39px] ultrawide:px-[70px] h-full text-white gap-y-10 z-40">
+                <p className='font-bold text-lg ultrawide:text-3xl group-hover:text-[1.2188rem] ultrawide:group-hover:text-4xl leading-[22px] 
+                  group-hover:leading-[28px] max-w-[288.91px] ultrawide:max-w-[380px] ultrawide:group-hover:max-w-[430px] group-hover:-translate-y-[80px]
+                  ultrawide:group-hover:-translate-y-[180px] transition-all ease-in-out duration-300 delay-75 '>
                   {item.title}
 
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className='text-base leading-[22px] font-normal group-hover:-translate-y-[80px]
-                      transition-all ease-in-out duration-300 delay-75'>
+                  <span className='text-base ultrawide:text-3xl leading-[22px] font-normal group-hover:-translate-y-[80px]
+                      ultrawide:group-hover:-translate-y-[180px] transition-all ease-in-out duration-300 delay-75'>
                     {item.date}
                   </span>
                   <img
                     src={arrow(index)}
                     aria-hidden alt=''
-                    className='transition-all ease-out duration-300 delay-75 group-hover:-translate-x-[200px] group-hover:-translate-y-[15px] size-5'
+                    className='transition-all ease-out duration-300 delay-75 group-hover:-translate-x-[200px] 
+                      ultrawide:group-hover:-translate-x-[500px] group-hover:-translate-y-[15px] size-5 ultrawide:size-8'
                   />
                 </div>
               </div>

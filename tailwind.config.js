@@ -74,6 +74,9 @@ export const theme = {
     fontFamily: {
       'barlow': ["Barlow", "sans-serif"],
     },
+    screens: {
+      'ultrawide': '2560px',
+    },
   },
 };
 // eslint-disable-next-line no-undef
