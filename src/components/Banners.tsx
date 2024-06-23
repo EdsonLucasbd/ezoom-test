@@ -62,7 +62,7 @@ export const Banners = ({ data }: { data: CarouselItemData[] | undefined }) => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselDots className='bottom-12 mt-[30.16px]' />
+        <CarouselDots className='bottom-12 mt-[50px]' />
 
       </Carousel>
 
